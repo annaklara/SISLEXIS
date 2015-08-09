@@ -1,5 +1,5 @@
 
-package Classes;
+package Modelos;
 
 public class Autenticar {
     private String login;   

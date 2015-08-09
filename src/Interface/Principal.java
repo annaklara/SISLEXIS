@@ -2,12 +2,15 @@ package Interface;
 
 import Atividades.Base;
 import Interface.Utilidades.PlanoDeFundo;
+import java.awt.Toolkit;
 
 public class Principal extends javax.swing.JFrame {
 
     // Criando o formulário Principal
     public Principal() {
         initComponents();
+        // Linha 38
+        iconeSIS();
         /*
          Definição do Plano de Fundo
          OBSERVAÇÃO: Caso a imagem não preencha o fundo por completo,
@@ -31,9 +34,15 @@ public class Principal extends javax.swing.JFrame {
     // Mensagens
     public static boolean mensagemAlerta = false;
     public static boolean mensagemSair = false;
+    
+    // Muda o ícone padrão
+    private void iconeSIS() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagens/iconeSIS.png")));
+    }
 
     // METODOS DE EXIBIÇÃO
     // Exibe o Pinel
+
     private void exibePainel(char tipo) {
         if ((acessoMonitor == true || acessoAdm == true) && mensagemAlerta == false) // Ativando o painel
         {
@@ -175,6 +184,7 @@ public class Principal extends javax.swing.JFrame {
         administrador = new javax.swing.JButton();
         monitor = new javax.swing.JButton();
         aluno = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("SISLEXIS - Sistema de Auxílio a Dislexia");
@@ -225,7 +235,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         areaDeTrabalho.add(btSair);
-        btSair.setBounds(10, 593, 170, 40);
+        btSair.setBounds(10, 580, 170, 40);
 
         btAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/btOculto.png"))); // NOI18N
         btAdministrador.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -312,7 +322,7 @@ public class Principal extends javax.swing.JFrame {
 
         mascara.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/mascara.png"))); // NOI18N
         areaDeTrabalho.add(mascara);
-        mascara.setBounds(180, 30, 360, 560);
+        mascara.setBounds(180, 20, 360, 560);
 
         btSobre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/logo.png"))); // NOI18N
         btSobre.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -321,7 +331,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         areaDeTrabalho.add(btSobre);
-        btSobre.setBounds(480, 490, 500, 189);
+        btSobre.setBounds(500, 470, 460, 160);
 
         administrador.setText("Administrador");
         administrador.addActionListener(new java.awt.event.ActionListener() {
@@ -350,6 +360,11 @@ public class Principal extends javax.swing.JFrame {
         areaDeTrabalho.add(aluno);
         aluno.setBounds(20, 510, 150, 23);
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/mascaraMenu.png"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        areaDeTrabalho.add(jLabel2);
+        jLabel2.setBounds(10, 20, 170, 610);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -366,7 +381,7 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btCadastrarMouseClicked
-        // Linha 35
+        // Linha 43
         exibePainel('c');
         // Limpa o botão 
         btPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/btPesquisarInativo.png")));
@@ -592,6 +607,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel btSair;
     private javax.swing.JLabel btSobre;
     private javax.swing.JLabel btTurma;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel mascara;
     private javax.swing.JButton monitor;
     // End of variables declaration//GEN-END:variables

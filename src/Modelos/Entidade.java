@@ -1,5 +1,5 @@
 
-package Classes;
+package Modelos;
 
 public class Entidade {
     private int id;

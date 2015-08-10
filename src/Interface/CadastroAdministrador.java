@@ -9,6 +9,8 @@ public class CadastroAdministrador extends javax.swing.JInternalFrame {
     public CadastroAdministrador() {
 
         initComponents();
+        // Ícone SISLEXIS
+        this.setFrameIcon(new javax.swing.ImageIcon( getClass().getResource("/Imagens/iconeSIS16.png") ));
     }
 
     // Verifica se a DATA está no formato coreto

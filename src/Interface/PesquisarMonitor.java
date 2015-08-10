@@ -5,6 +5,8 @@ public class PesquisarMonitor extends javax.swing.JInternalFrame {
     public PesquisarMonitor() {
 
         initComponents();
+        // Ícone SISLEXIS
+        this.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/iconeSIS16.png")));
     }
 
     @SuppressWarnings("unchecked")

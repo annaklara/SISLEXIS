@@ -1,13 +1,22 @@
 package Interface;
 
+import java.awt.Toolkit;
+
 public class MensagemSair extends javax.swing.JFrame {
 
     public MensagemSair() {
         initComponents();
+        // Linha 13
+        iconeSIS();
     }
 
-    @SuppressWarnings("unchecked") 
-    
+    // Muda o ícone padrão
+    private void iconeSIS() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagens/iconeSIS.png")));
+    }
+
+    @SuppressWarnings("unchecked")
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -128,9 +137,7 @@ public class MensagemSair extends javax.swing.JFrame {
     private javax.swing.JLabel mensagemSair;
     // End of variables declaration//GEN-END:variables
 public static void main(String args[]) {
-    
-    
-}
 
+    }
 
 }

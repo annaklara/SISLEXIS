@@ -1,7 +1,7 @@
-
 package Interface;
 
 import Interface.Utilidades.Tranparencia;
+import java.awt.Toolkit;
 
 public class Sobre extends javax.swing.JFrame {
 
@@ -9,9 +9,14 @@ public class Sobre extends javax.swing.JFrame {
         Tranparencia transparencia = new Tranparencia();
         transparencia.aplicaTransparencia(this);
         initComponents();
-        
+        // Linha 38
+        iconeSIS();
     }
 
+    // Muda o ícone padrão
+    private void iconeSIS() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagens/iconeSIS.png")));
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

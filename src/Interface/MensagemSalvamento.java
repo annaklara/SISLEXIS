@@ -1,13 +1,14 @@
-
 package Interface;
 
 public class MensagemSalvamento extends javax.swing.JInternalFrame {
 
     public MensagemSalvamento() {
         initComponents();
-    
+        // Ícone SISLEXIS
+        this.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/iconeSIS16.png")));
+
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -64,7 +65,7 @@ public class MensagemSalvamento extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btConcluirMouseClicked
 
     private void btConcluirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btConcluirMouseEntered
-            btConcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/btConcluirAtivo.png")));
+        btConcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/btConcluirAtivo.png")));
     }//GEN-LAST:event_btConcluirMouseEntered
 
     private void btConcluirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btConcluirMouseExited

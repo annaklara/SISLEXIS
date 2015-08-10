@@ -7,6 +7,8 @@ public class CadastroEntidade extends javax.swing.JInternalFrame {
     public CadastroEntidade() {
 
         initComponents();
+        // Ícone SISLEXIS
+        this.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/iconeSIS16.png")));
     }
 
     private void restricoes() {

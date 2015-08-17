@@ -1,19 +1,33 @@
 package Interface;
 
+import Modelos.Administrador;
+import Modelos.DAO.AdministradorDAO;
 import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class CadastroAdministrador extends javax.swing.JInternalFrame {
 
-    public CadastroAdministrador() {
+    // [◙Vínculo]1/3 Instância da entidade a qual receberá os valores vinculados
 
+    Administrador administradorBean;
+
+    public CadastroAdministrador() {
+        
+        // [Vínculo]2/3
+        this.administradorBean = new Administrador();
         initComponents();
+        
         // Ícone SISLEXIS
-        this.setFrameIcon(new javax.swing.ImageIcon( getClass().getResource("/Imagens/iconeSIS16.png") ));
+        this.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/iconeSIS16.png")));
     }
 
-    // Verifica se a DATA está no formato coreto
+    // [Vínculo]3/3 Metodo para tornar a expressão de vinculação visível
+    public Administrador getAdministrador() {
+        return administradorBean;
+    }
+
+    // [◙Validação] Verifica se a DATA está no formato coreto
     private boolean validaData(String data) {
         SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
         formatoData.setLenient(false);
@@ -34,13 +48,13 @@ public class CadastroAdministrador extends javax.swing.JInternalFrame {
         } else {
             rotuloNome.setForeground(new Color(0, 51, 102));
         }
-            // Verificando o formato (Linha 14)
-            if (validaData(campoDtNascimento.getText())) {
-                rotuloDtNascimento.setForeground(new Color(0, 51, 102));
-            } else {
-                rotuloDtNascimento.setForeground(Color.red);
-                restricao = true;
-            }
+        // Verificando o formato da data [◘Validação]
+        if (validaData(campoDtNascimento.getText())) {
+            rotuloDtNascimento.setForeground(new Color(0, 51, 102));
+        } else {
+            rotuloDtNascimento.setForeground(Color.red);
+            restricao = true;
+        }
         if (radioM.isSelected() == false && radioF.isSelected() == false) {
             rotuloSexo.setForeground(Color.red);
             restricao = true;
@@ -68,7 +82,7 @@ public class CadastroAdministrador extends javax.swing.JInternalFrame {
             rotuloSenhaConfirmar.setForeground(new Color(0, 51, 102));
         }
 
-        // Evita que haja euivoco na senha
+        // Evita que haja equivoco na senha
         if (restricao == false) {
             // Verifica se as senhas coincidem
             if (campoSenha.getText().equals(campoSenhaConfirmar.getText())) {
@@ -82,6 +96,12 @@ public class CadastroAdministrador extends javax.swing.JInternalFrame {
     }
 
     private void mensagemSalvamento() {
+        
+        // SALVANDO NO BD
+        // Instanciaando o método DAO
+        AdministradorDAO administradorDao = new AdministradorDAO();
+        // Salvando o objeto vinculado [◘Vínculo]
+        administradorDao.salvarAdministrador(administradorBean);
 
         // Instanciando mensagem de salvamento
         MensagemSalvamento salvamento = new MensagemSalvamento();
@@ -105,6 +125,7 @@ public class CadastroAdministrador extends javax.swing.JInternalFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         btGroupoSexo = new javax.swing.ButtonGroup();
         planoDeFundo = new javax.swing.JPanel();
@@ -142,6 +163,9 @@ public class CadastroAdministrador extends javax.swing.JInternalFrame {
         rotuloNome.setForeground(new java.awt.Color(0, 51, 102));
         rotuloNome.setText("NOME*");
 
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${administrador.nome}"), campoNome, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
+
         campoNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoNomeActionPerformed(evt);
@@ -158,6 +182,10 @@ public class CadastroAdministrador extends javax.swing.JInternalFrame {
         rotuloDtNascimento.setText("DATA DE NASCIMENTO*");
 
         campoDtNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${administrador.dtNascimento}"), campoDtNascimento, org.jdesktop.beansbinding.BeanProperty.create("value"));
+        bindingGroup.addBinding(binding);
+
         campoDtNascimento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoDtNascimentoActionPerformed(evt);
@@ -179,6 +207,9 @@ public class CadastroAdministrador extends javax.swing.JInternalFrame {
         radioM.setForeground(new java.awt.Color(0, 51, 102));
         radioM.setText("M");
 
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${administrador.sexo}"), radioM, org.jdesktop.beansbinding.BeanProperty.create("selected"));
+        bindingGroup.addBinding(binding);
+
         radioF.setBackground(new java.awt.Color(255, 255, 255));
         btGroupoSexo.add(radioF);
         radioF.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
@@ -187,7 +218,10 @@ public class CadastroAdministrador extends javax.swing.JInternalFrame {
 
         rotuloFuncao.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         rotuloFuncao.setForeground(new java.awt.Color(0, 51, 102));
-        rotuloFuncao.setText("FUNÇÃO");
+        rotuloFuncao.setText("FUNÇÃO*");
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${administrador.funcao}"), campoFuncao, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
 
         campoFuncao.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -199,6 +233,9 @@ public class CadastroAdministrador extends javax.swing.JInternalFrame {
         rotuloNivelEnsino.setForeground(new java.awt.Color(0, 51, 102));
         rotuloNivelEnsino.setText("NÍVEL DE ENSINO");
 
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${administrador.nivelDeEnsino}"), campoNivelEnsino, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
+
         campoNivelEnsino.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 campoNivelEnsinoKeyReleased(evt);
@@ -209,9 +246,15 @@ public class CadastroAdministrador extends javax.swing.JInternalFrame {
         rotuloNomeUsuario.setForeground(new java.awt.Color(0, 51, 102));
         rotuloNomeUsuario.setText("NOME DE USUÁRIO*");
 
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${administrador.login}"), campoNomeUsuario, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
+
         rotuloSenha.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         rotuloSenha.setForeground(new java.awt.Color(0, 51, 102));
         rotuloSenha.setText("SENHA*");
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${administrador.senha}"), campoSenha, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
 
         rotuloSenhaConfirmar.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         rotuloSenhaConfirmar.setForeground(new java.awt.Color(0, 51, 102));
@@ -287,7 +330,7 @@ public class CadastroAdministrador extends javax.swing.JInternalFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(radioF))
                                     .addComponent(campoNivelEnsino, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 12, Short.MAX_VALUE))))
+                                .addGap(0, 6, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, planoDeFundoLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(planoDeFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -364,6 +407,8 @@ public class CadastroAdministrador extends javax.swing.JInternalFrame {
             .addComponent(planoDeFundo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        bindingGroup.bind();
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -425,17 +470,17 @@ public class CadastroAdministrador extends javax.swing.JInternalFrame {
 
     private void campoFuncaoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoFuncaoKeyReleased
         // Deixando as letras maiúsculas
-        campoNome.setText(campoNome.getText().toUpperCase());
+        campoFuncao.setText(campoFuncao.getText().toUpperCase());
         // Remove espaços duplos
-        campoNome.setText(campoNome.getText().replace("  ", " "));
-        
+        campoFuncao.setText(campoFuncao.getText().replace("  ", " "));
+
     }//GEN-LAST:event_campoFuncaoKeyReleased
 
     private void campoNivelEnsinoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoNivelEnsinoKeyReleased
         // Deixando as letras maiúsculas
-        campoNome.setText(campoNome.getText().toUpperCase());
+        campoNivelEnsino.setText(campoNivelEnsino.getText().toUpperCase());
         // Remove espaços duplos
-        campoNome.setText(campoNome.getText().replace("  ", " "));
+        campoNivelEnsino.setText(campoNivelEnsino.getText().replace("  ", " "));
     }//GEN-LAST:event_campoNivelEnsinoKeyReleased
 
 
@@ -463,5 +508,6 @@ public class CadastroAdministrador extends javax.swing.JInternalFrame {
     private javax.swing.JLabel rotuloSenhaConfirmar;
     private javax.swing.JLabel rotuloSexo;
     private javax.swing.JLabel textoSenhaDiferente;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

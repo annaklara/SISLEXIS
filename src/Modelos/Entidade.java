@@ -1,22 +1,25 @@
 
 package Modelos;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Entidade {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String nome;
     private String endereco;
+    private String bairro;
+    private String cidade;
+    private String cep;
     private int cnpj;
     private int qtdSala;
     
-    public Entidade (String nome, String endereco, int cnpj, int qtdSala){
-    id = id ++;
-    this.nome = nome;
-    this.endereco = endereco;
-    this.cnpj = cnpj;
-    this.qtdSala = qtdSala;
-    
-    }
-
     public int getId() {
         return id;
     }
@@ -55,5 +58,29 @@ public class Entidade {
 
     public void setQtdSala(int qtdSala) {
         this.qtdSala = qtdSala;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
     }
 }

@@ -1,8 +1,15 @@
-
 package Modelos;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Turma {
-    
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String nome;
     private String turno;
@@ -10,17 +17,6 @@ public class Turma {
     private String serie;
     private String monitor;
     private int qtdVagas;
-    
-    public Turma (String nome, String turno, int horarioEntrada, int horarioSaida, String serie, String monitor, int qtdVagas){
-        id = id + 1;
-        this.nome = nome;
-        this.turno = turno;
-        this.horarioEntrada= horarioEntrada;
-        this.horarioSaida = horarioSaida;
-        this.serie = serie;
-        this.monitor = monitor;
-        this.qtdVagas = qtdVagas;
-    }
 
     public int getId() {
         return id;
@@ -85,5 +81,5 @@ public class Turma {
     public void setQtdVagas(int qtdVagas) {
         this.qtdVagas = qtdVagas;
     }
-    
+
 }

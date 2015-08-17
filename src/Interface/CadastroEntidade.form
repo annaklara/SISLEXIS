@@ -159,6 +159,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="campoNome">
+          <BindingProperties>
+            <BindingProperty name="text" source="Form" sourcePath="${entidade.nome}" target="campoNome" targetPath="text" updateStrategy="0" immediately="false">
+              <BindingParameter name="javax.swing.binding.ParameterKeys.TEXT_CHANGE_STRATEGY" value="javax.swing.binding.TextChangeStrategy.ON_TYPE"/>
+            </BindingProperty>
+          </BindingProperties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoNomeActionPerformed"/>
             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="campoNomeKeyReleased"/>
@@ -181,6 +186,9 @@
               <Format format="##.###.###/####-##" subtype="-1" type="5"/>
             </Property>
           </Properties>
+          <BindingProperties>
+            <BindingProperty name="value" source="Form" sourcePath="${entidade.cnpj}" target="campoCNPJ" targetPath="value" updateStrategy="0" immediately="false"/>
+          </BindingProperties>
         </Component>
         <Component class="javax.swing.JLabel" name="rotuloEndereco">
           <Properties>
@@ -194,6 +202,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="campoEndereco">
+          <BindingProperties>
+            <BindingProperty name="text" source="Form" sourcePath="${entidade.endereco}" target="campoEndereco" targetPath="text" updateStrategy="0" immediately="false">
+              <BindingParameter name="javax.swing.binding.ParameterKeys.TEXT_CHANGE_STRATEGY" value="javax.swing.binding.TextChangeStrategy.ON_TYPE"/>
+            </BindingProperty>
+          </BindingProperties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoEnderecoActionPerformed"/>
             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="campoEnderecoKeyReleased"/>
@@ -211,6 +224,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="campoBairro">
+          <BindingProperties>
+            <BindingProperty name="text" source="Form" sourcePath="${entidade.bairro}" target="campoBairro" targetPath="text" updateStrategy="0" immediately="false">
+              <BindingParameter name="javax.swing.binding.ParameterKeys.TEXT_CHANGE_STRATEGY" value="javax.swing.binding.TextChangeStrategy.ON_TYPE"/>
+            </BindingProperty>
+          </BindingProperties>
         </Component>
         <Component class="javax.swing.JLabel" name="rotuloCidade">
           <Properties>
@@ -224,6 +242,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="campoCidade">
+          <BindingProperties>
+            <BindingProperty name="text" source="Form" sourcePath="${entidade.cidade}" target="campoCidade" targetPath="text" updateStrategy="0" immediately="false">
+              <BindingParameter name="javax.swing.binding.ParameterKeys.TEXT_CHANGE_STRATEGY" value="javax.swing.binding.TextChangeStrategy.ON_TYPE"/>
+            </BindingProperty>
+          </BindingProperties>
         </Component>
         <Component class="javax.swing.JLabel" name="btSalvar">
           <Properties>
@@ -266,6 +289,9 @@
               <Format format="#####-###" subtype="-1" type="5"/>
             </Property>
           </Properties>
+          <BindingProperties>
+            <BindingProperty name="value" source="Form" sourcePath="${entidade.cep}" target="campoCEP" targetPath="value" updateStrategy="0" immediately="false"/>
+          </BindingProperties>
         </Component>
       </SubComponents>
     </Container>

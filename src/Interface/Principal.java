@@ -9,7 +9,7 @@ public class Principal extends javax.swing.JFrame {
     // Criando o formulário Principal
     public Principal() {
         initComponents();
-        // Linha 38
+        // Chama o método de mudar ícone [◘Ícone]
         iconeSIS();
         /*
          Definição do Plano de Fundo
@@ -34,15 +34,14 @@ public class Principal extends javax.swing.JFrame {
     // Mensagens
     public static boolean mensagemAlerta = false;
     public static boolean mensagemSair = false;
-    
-    // Muda o ícone padrão
+
+    // [◙Ícone] Muda o ícone padrão
     private void iconeSIS() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagens/iconeSIS.png")));
     }
 
-    // METODOS DE EXIBIÇÃO
+    // [◙Exibição] METODOS DE EXIBIÇÃO
     // Exibe o Pinel
-
     private void exibePainel(char tipo) {
         if ((acessoMonitor == true || acessoAdm == true) && mensagemAlerta == false) // Ativando o painel
         {
@@ -161,6 +160,22 @@ public class Principal extends javax.swing.JFrame {
                 cadastroE.setVisible(true);
                 // Controlando o limite de telas
                 limiteDeTelas = true;
+        }
+    }
+
+    public void sair() {
+        if (mensagemAlerta == false) {
+            MensagemSair sair = new MensagemSair();
+            sair.setVisible(true);
+            sair.setAlwaysOnTop(true);
+            // Ocultando o painel de cadastros e resetando os ícones dos botões
+            ocultaPainel('o');
+            btCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/btCadastrarInativo.png")));
+            btPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/btPesquisarInativo.png")));
+            btRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/btRelatorioInativo.png")));
+            mascara.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/mascara.png")));
+            mensagemAlerta = (true);
+            mensagemSair = (true);
         }
     }
 
@@ -381,7 +396,7 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btCadastrarMouseClicked
-        // Linha 43
+        // Exibindo o painel [◘Exibição]
         exibePainel('c');
         // Limpa o botão 
         btPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/btPesquisarInativo.png")));
@@ -538,7 +553,7 @@ public class Principal extends javax.swing.JFrame {
     private void alunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alunoActionPerformed
         acessoAdm = false;
         acessoMonitor = false;
-        acessoAluno = true;        // TODO add your handling code here:
+        acessoAluno = true;
     }//GEN-LAST:event_alunoActionPerformed
 
     private void administradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_administradorActionPerformed

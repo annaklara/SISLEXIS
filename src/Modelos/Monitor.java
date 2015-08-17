@@ -1,22 +1,22 @@
-
 package Modelos;
 
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-public class Monitor extends Pessoa{
-    
+@Entity
+public class Monitor {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    // Atributos
+    private int id;
+    private String nome;
+    private Date dtNascimento;
+    private boolean sexo; // (Masculno = true | 1) (Feminino = false | 0)
+    private String nivelDeEnsino;
+    private String login, senha;
     private String funcao;
-
-    public Monitor(String nome, Date dataNascimento, char sexo, String login, String senha) {
-        super(nome, dataNascimento, sexo, login, senha);
-    }
-
-    public String getFuncao() {
-        return funcao;
-    }
-
-    public void setFuncao(String funcao) {
-        this.funcao = funcao;
-    }
-    
 }

@@ -13,7 +13,7 @@ public class CadastroMonitor extends javax.swing.JInternalFrame {
         this.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/iconeSIS16.png")));
     }
 
-    // Verifica se a DATA está no formato coreto
+    // [◙Validação] Verifica se a DATA está no formato coreto
     private boolean validaData(String data) {
         SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
         formatoData.setLenient(false);
@@ -34,7 +34,7 @@ public class CadastroMonitor extends javax.swing.JInternalFrame {
         } else {
             rotuloNome.setForeground(new Color(0, 51, 102));
         }
-        // Verificando o formato (Linha 14)
+        // Verificando o formato da data [◘Validação]
         if (validaData(campoDtNascimento.getText())) {
             rotuloDtNascimento.setForeground(new Color(0, 51, 102));
         } else {
@@ -192,7 +192,7 @@ public class CadastroMonitor extends javax.swing.JInternalFrame {
 
         rotuloFuncao.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         rotuloFuncao.setForeground(new java.awt.Color(0, 51, 102));
-        rotuloFuncao.setText("FUNÇÃO");
+        rotuloFuncao.setText("FUNÇÃO*");
 
         campoFuncao.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -292,7 +292,7 @@ public class CadastroMonitor extends javax.swing.JInternalFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(radioF))
                                     .addComponent(campoNivelEnsino, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 12, Short.MAX_VALUE))))
+                                .addGap(0, 6, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, planoDeFundoLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(planoDeFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -429,16 +429,16 @@ public class CadastroMonitor extends javax.swing.JInternalFrame {
 
     private void campoFuncaoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoFuncaoKeyReleased
         // Deixando as letras maiúsculas
-        campoNome.setText(campoNome.getText().toUpperCase());
+        campoFuncao.setText(campoFuncao.getText().toUpperCase());
         // Remove espaços duplos
-        campoNome.setText(campoNome.getText().replace("  ", " "));
+        campoFuncao.setText(campoFuncao.getText().replace("  ", " "));
     }//GEN-LAST:event_campoFuncaoKeyReleased
 
     private void campoNivelEnsinoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoNivelEnsinoKeyReleased
         // Deixando as letras maiúsculas
-        campoNome.setText(campoNome.getText().toUpperCase());
+        campoNivelEnsino.setText(campoNivelEnsino.getText().toUpperCase());
         // Remove espaços duplos
-        campoNome.setText(campoNome.getText().replace("  ", " "));
+        campoNivelEnsino.setText(campoNivelEnsino.getText().replace("  ", " "));
     }//GEN-LAST:event_campoNivelEnsinoKeyReleased
 
 

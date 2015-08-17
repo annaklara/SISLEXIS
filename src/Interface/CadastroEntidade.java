@@ -1,14 +1,27 @@
 package Interface;
 
+import Modelos.DAO.EntidadeDAO;
+import Modelos.Entidade;
 import java.awt.Color;
 
 public class CadastroEntidade extends javax.swing.JInternalFrame {
 
+    // Vínculo 1/3 Instância da entidade a qual receberá os valores vinculados
+    Entidade entidadeBean = new Entidade();
+
     public CadastroEntidade() {
+
+        // Vínculo 2/3
+        this.entidadeBean = new Entidade();
 
         initComponents();
         // Ícone SISLEXIS
         this.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/iconeSIS16.png")));
+    }
+
+    // Vínculo 3/3 Metodo para tornar a expressão de vinculação visível
+    public Entidade getEntidade() {
+        return entidadeBean;
     }
 
     private void restricoes() {
@@ -51,9 +64,20 @@ public class CadastroEntidade extends javax.swing.JInternalFrame {
             rotuloCNPJ.setForeground(new Color(0, 51, 102));
         }
 
+        // Salva se tudo estiver de acordo
+        if (restricao == false) {
+            mensagemSalvamento();
+
+        }
+
     }
 
     private void mensagemSalvamento() {
+
+        // Instancia o método dao da entidade
+        EntidadeDAO entidadeDao = new EntidadeDAO();
+        // Salva a entidade vinculada
+        entidadeDao.salvarEntidade(entidadeBean);
 
         // Instanciando mensagem de salvamento
         MensagemSalvamento salvamento = new MensagemSalvamento();
@@ -77,6 +101,7 @@ public class CadastroEntidade extends javax.swing.JInternalFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         btGroupoSexo = new javax.swing.ButtonGroup();
         planoDeFundo = new javax.swing.JPanel();
@@ -107,6 +132,9 @@ public class CadastroEntidade extends javax.swing.JInternalFrame {
         rotuloNome.setForeground(new java.awt.Color(0, 51, 102));
         rotuloNome.setText("NOME*");
 
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${entidade.nome}"), campoNome, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
+
         campoNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoNomeActionPerformed(evt);
@@ -128,9 +156,15 @@ public class CadastroEntidade extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
 
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${entidade.cnpj}"), campoCNPJ, org.jdesktop.beansbinding.BeanProperty.create("value"));
+        bindingGroup.addBinding(binding);
+
         rotuloEndereco.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         rotuloEndereco.setForeground(new java.awt.Color(0, 51, 102));
         rotuloEndereco.setText("ENDEREÇO");
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${entidade.endereco}"), campoEndereco, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
 
         campoEndereco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,9 +181,15 @@ public class CadastroEntidade extends javax.swing.JInternalFrame {
         rotuloBairro.setForeground(new java.awt.Color(0, 51, 102));
         rotuloBairro.setText("BAIRRO");
 
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${entidade.bairro}"), campoBairro, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
+
         rotuloCidade.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         rotuloCidade.setForeground(new java.awt.Color(0, 51, 102));
         rotuloCidade.setText("CIDADE");
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${entidade.cidade}"), campoCidade, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
 
         btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/btSalvarInativo.png"))); // NOI18N
         btSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -186,6 +226,9 @@ public class CadastroEntidade extends javax.swing.JInternalFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${entidade.cep}"), campoCEP, org.jdesktop.beansbinding.BeanProperty.create("value"));
+        bindingGroup.addBinding(binding);
 
         javax.swing.GroupLayout planoDeFundoLayout = new javax.swing.GroupLayout(planoDeFundo);
         planoDeFundo.setLayout(planoDeFundoLayout);
@@ -271,6 +314,8 @@ public class CadastroEntidade extends javax.swing.JInternalFrame {
             .addComponent(planoDeFundo, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
         );
 
+        bindingGroup.bind();
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -347,5 +392,6 @@ public class CadastroEntidade extends javax.swing.JInternalFrame {
     private javax.swing.JLabel rotuloCidade;
     private javax.swing.JLabel rotuloEndereco;
     private javax.swing.JLabel rotuloNome;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
